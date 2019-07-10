@@ -12,6 +12,10 @@ public class UserService {
 	@Autowired
 	private UserDao userDao;
 
+	
+	
+	
+	
 	public Boolean existEmail(String email) {
 		UserVo userVo = userDao.get(email);
 		return userVo != null;

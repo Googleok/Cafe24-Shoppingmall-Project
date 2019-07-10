@@ -4,9 +4,9 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="uservo" type="com.cafe24.shoppingmall.vo.UserVo"/>
+		<!-- 
 		<typeAlias alias="productvo" type="com.cafe24.shoppingmall.vo.ProductVo"/>
 		<typeAlias alias="optionvo" type="com.cafe24.shoppingmall.vo.OptionVo"/>
-		<!-- 
 		<typeAlias alias="ordervo" type="com.cafe24.shoppingmall.vo.OrderVo"/>
 		<typeAlias alias="orderdetailvo" type="com.cafe24.shoppingmall.vo.OrderDetailVo"/>
 		 -->
