@@ -3,7 +3,16 @@
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
+		<typeAlias alias="uservo" type="com.cafe24.shoppingmall.vo.UserVo"/>
+		<typeAlias alias="productvo" type="com.cafe24.shoppingmall.vo.ProductVo"/>
+		<typeAlias alias="optionvo" type="com.cafe24.shoppingmall.vo.OptionVo"/>
+		<!-- 
+		<typeAlias alias="ordervo" type="com.cafe24.shoppingmall.vo.OrderVo"/>
+		<typeAlias alias="orderdetailvo" type="com.cafe24.shoppingmall.vo.OrderDetailVo"/>
+		 -->
 	</typeAliases>
 	<mappers>
+		<mapper resource="com/cafe24/config/app/mybatis/mappers/user.xml" />
+		<mapper resource="com/cafe24/config/app/mybatis/mappers/admin.xml" />
 	</mappers>
 </configuration>
