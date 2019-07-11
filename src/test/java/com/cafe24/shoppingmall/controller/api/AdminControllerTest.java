@@ -22,6 +22,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.cafe24.shoppingmall.config.test.AppConfig;
 import com.cafe24.shoppingmall.config.test.WebConfig;
+import com.cafe24.shoppingmall.vo.OrderDetailVo;
 import com.cafe24.shoppingmall.vo.ProductVo;
 import com.google.gson.Gson;
 
@@ -112,10 +113,85 @@ public class AdminControllerTest {
 		String keyword = "cap";
 		ResultActions resultActions = 
 				mockMvc
-				.perform(get("/api/admin/product/search?keyword=" + keyword))
+				.perform(get("/api/admin/product/search?keyword={keyword}", keyword))
 				.andExpect(status().isOk())
 				.andDo(print());
 
 	}
+	
+	// ===================================================================================================
+	
+	// 주문리스트  요청 Test
+	@Test
+	public void testGetOrderList() throws Exception {
+		ResultActions resultActions = 
+				mockMvc
+				.perform(get("/api/admin/order"))
+				.andExpect(status().isOk())
+				.andDo(print());
+
+	}
+	
+	// 주문한개  요청 Test
+	@Test
+	public void testGetOrderOne() throws Exception {
+
+		Long orderNo = 1L;
+		ResultActions resultActions = 
+				mockMvc
+				.perform(get("/api/admin/order/{no}", orderNo))
+				.andExpect(status().isOk())
+				.andDo(print());
+	}	
+	
+	// 상세주문  요청 Test
+	@Test
+	public void testGetOrderDetail() throws Exception {
+
+		Long orderNo = 2L;
+		ResultActions resultActions = 
+				mockMvc
+				.perform(get("/api/admin/order/detail/{no}", orderNo))
+				.andExpect(status().isOk())
+				.andDo(print());
+	}	
+	
+	
+	// 입금확인체크  Test
+	@Test
+	public void testOrderDepositCheck() throws Exception {
+		Long orderDetailNo = 1L;
+		
+		ResultActions resultActions = 
+				mockMvc
+				.perform(put("/api/admin/order/depositcheck/{orderDetailNo}", orderDetailNo))
+				.andExpect(status().isOk())
+				.andDo(print());
+	}	
+	
+	// 배송출발체크  Test
+	@Test
+	public void testOrderDeliveryCheck() throws Exception {
+		Long orderDetailNo = 1L;
+		
+		ResultActions resultActions = 
+				mockMvc
+				.perform(put("/api/admin/order/deliverycheck/{orderDetailNo}", orderDetailNo))
+				.andExpect(status().isOk())
+				.andDo(print());
+	}	
+	
+	// 주문검색리스트  요청 Test
+	@Test
+	public void testGetOrderSearchList() throws Exception {
+		String keyword = "01040287755";
+		ResultActions resultActions = 
+				mockMvc
+				.perform(get("/api/admin/order/search?keyword={keyword}", keyword))
+				.andExpect(status().isOk())
+				.andDo(print());
+
+	}
+	
 }
 

@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cafe24.shoppingmall.dto.JSONResult;
 import com.cafe24.shoppingmall.service.AdminService;
+import com.cafe24.shoppingmall.vo.OrderDetailVo;
+import com.cafe24.shoppingmall.vo.OrderVo;
 import com.cafe24.shoppingmall.vo.ProductVo;
 
 @RestController("adminAPIController")
@@ -29,7 +31,7 @@ public class AdminController {
 	// product
 	
 	// 상품리스트
-	@GetMapping("/product")
+	@GetMapping({"/product", "/product/list"})
 	public JSONResult getProductList(){
 		List<ProductVo> list = adminService.getProductList();
 		return JSONResult.success(list);
@@ -65,7 +67,6 @@ public class AdminController {
 	}
 	
 	// 상품검색
-	// 상품리스트
 	@GetMapping("/product/search")
 	public JSONResult getProductSearchList(@RequestParam(value = "keyword") String keyword){
 		List<ProductVo> list = adminService.getProductSearchList(keyword);
@@ -76,11 +77,47 @@ public class AdminController {
 	// order
 	
 	// 전체주문리스트 요청
-	// 입금확인체크
-	// 배송출발체크
-	// 전체주문중에 주문상세 요청
-	// 주문검색
+	@GetMapping({"/order", "/order/list"})
+	public JSONResult getOrderList(){
+		List<OrderVo> list = adminService.getOrderList();
+		return JSONResult.success(list);
+	}
 	
+	// 주문한개 요청
+	@GetMapping("/order/{no}")
+	public JSONResult getOrderOne(@PathVariable("no") Long no){
+		OrderVo vo = adminService.getOrderOne(no);
+		return JSONResult.success(vo);
+	}
+	
+	// 상세주문 요청
+	@GetMapping("/order/detail/{no}")
+	public JSONResult getOrderDetail(@PathVariable("no") Long no){
+		OrderDetailVo vo = adminService.getOrderDetail(no);
+		return JSONResult.success(vo);
+	}
+	
+
+	// 입금확인체크
+	@PutMapping("/order/depositcheck/{no}")
+	public JSONResult orderDepositCheck(@PathVariable("no") Long no){
+		OrderDetailVo newVo = adminService.orderDepositCheck(no);
+		return JSONResult.success(newVo);
+	}
+	
+	// 배송출발체크
+	@PutMapping("/order/deliverycheck/{no}")
+	public JSONResult orderDeliveryCheck(@PathVariable("no") Long no){
+		OrderDetailVo newVo = adminService.orderDeliveryCheck(no);
+		return JSONResult.success(newVo);
+	}
+	
+	// 주문검색 --> 너무많은데 일단 phone 번호로 체크
+	@GetMapping("/order/search")
+	public JSONResult getOrderSearchList(@RequestParam(value = "keyword") String keyword){
+		List<OrderVo> list = adminService.getOrderSearchList(keyword);
+		return JSONResult.success(list);
+	}
 	
 	
 	
