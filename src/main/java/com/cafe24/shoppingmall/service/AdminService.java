@@ -30,4 +30,8 @@ public class AdminService {
 				2500L, 3L); 
 		return vo;
 	}
+
+	public Boolean addProduct(ProductVo vo) {
+		return vo != null;
+	}
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,23 +44,23 @@ public class AdminController {
 	
 	// 상품등록
 	@PostMapping("/product")
-	public JSONResult addProduct(){
-		List<ProductVo> list = adminService.getProductList();
-		return JSONResult.success(list);
+	public JSONResult addProduct(@RequestBody ProductVo vo){
+		Boolean result = adminService.addProduct(vo);
+		return JSONResult.success(result);
 	}
 	
 	// 상품수정
 	@PutMapping("/product")
 	public JSONResult modifyProduct(){
 		List<ProductVo> list = adminService.getProductList();
-		return JSONResult.success(list);
+		return JSONResult.success("reserve");
 	}
 	
 	// 상품삭제
 	@DeleteMapping("/product")
 	public JSONResult deleteProduct(){
 		List<ProductVo> list = adminService.getProductList();
-		return JSONResult.success(list);
+		return JSONResult.success("reserve");
 	}
 	
 	
