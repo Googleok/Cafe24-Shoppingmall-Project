@@ -193,5 +193,21 @@ public class AdminControllerTest {
 
 	}
 	
+	// ======================================================================================
+	
+	// 회원관리
+	
+	// 회원리스트 요청 Test
+	@Test
+	public void testGetUserList() throws Exception {
+		ResultActions resultActions = 
+				mockMvc
+				.perform(get("/api/admin/user"))
+				.andExpect(status().isOk())
+				.andDo(print());
+
+	}
+
+	
 }
 

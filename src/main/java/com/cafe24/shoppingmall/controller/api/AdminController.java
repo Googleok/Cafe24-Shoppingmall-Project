@@ -19,6 +19,7 @@ import com.cafe24.shoppingmall.service.AdminService;
 import com.cafe24.shoppingmall.vo.OrderDetailVo;
 import com.cafe24.shoppingmall.vo.OrderVo;
 import com.cafe24.shoppingmall.vo.ProductVo;
+import com.cafe24.shoppingmall.vo.UserVo;
 
 @RestController("adminAPIController")
 @RequestMapping("/api/admin")
@@ -118,8 +119,19 @@ public class AdminController {
 		List<OrderVo> list = adminService.getOrderSearchList(keyword);
 		return JSONResult.success(list);
 	}
+
+	// 회원관리
+	// user
 	
-	
+	// 회원리스트 요청
+	@GetMapping({"/user", "/user/list"})
+	public JSONResult getUserList(){
+		List<UserVo> list = adminService.getUserList();
+		return JSONResult.success(list);
+	}
+	// 회원 삭제
+	// 회원 상태 수정
+	// 회원검색
 	
 	
 	

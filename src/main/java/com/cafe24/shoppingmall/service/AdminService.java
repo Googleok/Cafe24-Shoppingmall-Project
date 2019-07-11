@@ -10,6 +10,7 @@ import com.cafe24.shoppingmall.repository.AdminDao;
 import com.cafe24.shoppingmall.vo.OrderDetailVo;
 import com.cafe24.shoppingmall.vo.OrderVo;
 import com.cafe24.shoppingmall.vo.ProductVo;
+import com.cafe24.shoppingmall.vo.UserVo;
 
 @Service
 public class AdminService {
@@ -201,6 +202,21 @@ public class AdminService {
 			}
 		}
 		return searchList;
+	}
+	
+	//========================================================================================================
+	
+	// 고객관리
+
+	public List<UserVo> getUserList() {
+		UserVo vo1 = new UserVo(1L, "whddjr2225", "1234", "박", "01040287755", "whddjr2225@naver.com", "1993-11-02", "male");
+		UserVo vo2 = new UserVo(2L, "whddjr2225", "1234", "종", "01040287755", "whddjr2225@naver.com", "1993-11-02", "male");
+		UserVo vo3 = new UserVo(3L, "whddjr2225", "1234", "억", "01040287755", "whddjr2225@naver.com", "1993-11-02", "male");
+		List<UserVo> list = new ArrayList<UserVo>();
+		list.add(vo1);
+		list.add(vo2);
+		list.add(vo3);
+		return list;
 	}
 
 	
