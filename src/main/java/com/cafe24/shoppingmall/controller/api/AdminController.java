@@ -50,19 +50,20 @@ public class AdminController {
 	}
 	
 	// 상품수정
-	@PutMapping("/product")
-	public JSONResult modifyProduct(){
-		List<ProductVo> list = adminService.getProductList();
-		return JSONResult.success("reserve");
+	@PutMapping("/product/{no}")
+	public JSONResult modifyProduct(@PathVariable("no") Long no, @RequestBody ProductVo vo){
+		ProductVo newVo = adminService.modifyProduct(no, vo);
+		return JSONResult.success(newVo);
 	}
 	
 	// 상품삭제
-	@DeleteMapping("/product")
-	public JSONResult deleteProduct(){
-		List<ProductVo> list = adminService.getProductList();
-		return JSONResult.success("reserve");
+	@DeleteMapping("/product/{no}")
+	public JSONResult deleteProduct(@PathVariable("no") Long no){
+		boolean result = adminService.deleteProduct(no);
+		return JSONResult.success(result);
 	}
 	
 	
 	
 }
+

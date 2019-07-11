@@ -1,7 +1,9 @@
 package com.cafe24.shoppingmall.controller.api;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -74,4 +76,34 @@ public class AdminControllerTest {
 				.andExpect(status().isOk())
 				.andDo(print());
 	}	
+	
+	// 상품수정  Test
+	@Test
+	public void testModifyProduct() throws Exception {
+		ProductVo voMock = new ProductVo();
+		voMock.setName("가죽자켓");
+		voMock.setPrice(120000L);
+		
+		Long modifyNo = 2L;
+		
+		ResultActions resultActions = 
+				mockMvc
+				.perform(put("/api/admin/product/{modifyNo}", modifyNo)
+				.contentType(MediaType.APPLICATION_JSON).content(new Gson().toJson(voMock)))
+				.andExpect(status().isOk())
+				.andDo(print());
+	}	
+	
+	// 상품삭제  Test
+	@Test
+	public void testDeleteProduct() throws Exception {
+		Long deleteNo = 2L;
+		
+		ResultActions resultActions = 
+				mockMvc
+				.perform(delete("/api/admin/product/{deleteNo}", deleteNo))
+				.andExpect(status().isOk())
+				.andDo(print());
+	}	
 }
+
