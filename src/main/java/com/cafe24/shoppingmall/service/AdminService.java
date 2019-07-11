@@ -23,4 +23,11 @@ public class AdminService {
 			2500L, 3L));
 		return list;
 	}
+
+	public ProductVo getProductOne(Long no) {
+		ProductVo vo = new ProductVo(1L, "모자", 30000L, "2019-07-11", true,
+				false, true, 1L, 400L, "cap.html",
+				2500L, 3L); 
+		return vo;
+	}
 }

@@ -44,4 +44,15 @@ public class AdminControllerTest {
 
 	}
 
+	// 상품하나만  요청 Test
+	@Test
+	public void testGetProductOne() throws Exception {
+		Long productNo = 1L;
+		ResultActions resultActions = 
+				mockMvc
+				.perform(get("/api/admin/product/{no}", productNo))
+				.andExpect(status().isOk())
+				.andDo(print());
+	}	
+	
 }
