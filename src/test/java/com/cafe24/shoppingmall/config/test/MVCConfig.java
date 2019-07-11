@@ -1,4 +1,4 @@
-package com.cafe24.shoppingmall.config;
+package com.cafe24.shoppingmall.config.test;
 
 import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
@@ -20,7 +20,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 
 @Configuration
-public class TestMVCConfig extends WebMvcConfigurerAdapter {
+public class MVCConfig extends WebMvcConfigurerAdapter {
 
    /*
     * viewResolver 

@@ -17,12 +17,12 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.cafe24.shoppingmall.config.TestAppConfig;
-import com.cafe24.shoppingmall.config.TestWebConfig;
+import com.cafe24.shoppingmall.config.test.AppConfig;
+import com.cafe24.shoppingmall.config.test.WebConfig;
 import com.cafe24.shoppingmall.vo.UserVo;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes={TestAppConfig.class, TestWebConfig.class})
+@ContextConfiguration(classes={AppConfig.class, WebConfig.class})
 @WebAppConfiguration
 public class UserControllerTest {
 

@@ -20,9 +20,6 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	
-	
-	
 //	@ApiOperation(value="이메일 존재 여부")
 //	@ApiImplicitParams({
 //		@ApiImplicitParam(name="email", value="이메일 주소", required = true) 
