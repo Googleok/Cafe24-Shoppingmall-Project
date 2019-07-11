@@ -105,5 +105,17 @@ public class AdminControllerTest {
 				.andExpect(status().isOk())
 				.andDo(print());
 	}	
+	
+	// 상품검색리스트  요청 Test
+	@Test
+	public void testGetProductSearchList() throws Exception {
+		String keyword = "cap";
+		ResultActions resultActions = 
+				mockMvc
+				.perform(get("/api/admin/product/search?keyword=" + keyword))
+				.andExpect(status().isOk())
+				.andDo(print());
+
+	}
 }
 
