@@ -27,77 +27,77 @@ public class AdminController {
 
 	@Autowired
 	private AdminService adminService;
-	
-	// 상품관리 
+
+	// 상품관리
 	// product
-	
+
 	// 상품리스트
 	@GetMapping({"/product", "/product/list"})
 	public JSONResult getProductList(){
 		List<ProductVo> list = adminService.getProductList();
 		return JSONResult.success(list);
 	}
-	
+
 	// 상품 하나만
 	@GetMapping("/product/{no}")
 	public JSONResult getProductOne(@PathVariable("no") Long no){
 		ProductVo vo = adminService.getProductOne(no);
 		return JSONResult.success(vo);
 	}
-	
-	
+
+
 	// 상품등록
 	@PostMapping("/product")
 	public JSONResult addProduct(@RequestBody ProductVo vo){
 		Boolean result = adminService.addProduct(vo);
 		return JSONResult.success(result);
 	}
-	
+
 	// 상품수정
 	@PutMapping("/product/{no}")
 	public JSONResult modifyProduct(@PathVariable("no") Long no, @RequestBody ProductVo vo){
 		ProductVo newVo = adminService.modifyProduct(no, vo);
 		return JSONResult.success(newVo);
 	}
-	
+
 	// 상품삭제
 	@DeleteMapping("/product/{no}")
 	public JSONResult deleteProduct(@PathVariable("no") Long no){
 		boolean result = adminService.deleteProduct(no);
 		return JSONResult.success(result);
 	}
-	
+
 	// 상품검색
 	@GetMapping("/product/search")
 	public JSONResult getProductSearchList(@RequestParam(value = "keyword") String keyword){
 		List<ProductVo> list = adminService.getProductSearchList(keyword);
 		return JSONResult.success(list);
 	}
-	
+
 	// 주문관리
 	// order
-	
+
 	// 전체주문리스트 요청
 	@GetMapping({"/order", "/order/list"})
 	public JSONResult getOrderList(){
 		List<OrderVo> list = adminService.getOrderList();
 		return JSONResult.success(list);
 	}
-	
+
 	// 주문한개 요청
 	@GetMapping("/order/{no}")
 	public JSONResult getOrderOne(@PathVariable("no") Long no){
 		OrderVo vo = adminService.getOrderOne(no);
 		return JSONResult.success(vo);
 	}
-	
+
 	// 상세주문 요청
 	@GetMapping("/order/detail/{no}")
 	public JSONResult getOrderDetail(@PathVariable("no") Long no){
 		OrderDetailVo vo = adminService.getOrderDetail(no);
 		return JSONResult.success(vo);
 	}
-	
+
 
 	// 입금확인체크
 	@PutMapping("/order/depositcheck/{no}")
@@ -105,14 +105,14 @@ public class AdminController {
 		OrderDetailVo newVo = adminService.orderDepositCheck(no);
 		return JSONResult.success(newVo);
 	}
-	
+
 	// 배송출발체크
 	@PutMapping("/order/deliverycheck/{no}")
 	public JSONResult orderDeliveryCheck(@PathVariable("no") Long no){
 		OrderDetailVo newVo = adminService.orderDeliveryCheck(no);
 		return JSONResult.success(newVo);
 	}
-	
+
 	// 주문검색 --> 너무많은데 일단 phone 번호로 체크
 	@GetMapping("/order/search")
 	public JSONResult getOrderSearchList(@RequestParam(value = "keyword") String keyword){
@@ -122,7 +122,7 @@ public class AdminController {
 
 	// 회원관리
 	// user
-	
+
 	// 회원리스트 요청
 	@GetMapping({"/user", "/user/list"})
 	public JSONResult getUserList(){
@@ -132,16 +132,15 @@ public class AdminController {
 	// 회원 삭제
 	// 회원 상태 수정
 	// 회원검색
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-}
 
+
+
+
+
+
+
+
+
+
+
+}
