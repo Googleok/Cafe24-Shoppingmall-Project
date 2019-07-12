@@ -100,7 +100,6 @@ public class AdminService {
 
 	// 상품검색
 	public List<ProductVo> getProductSearchList(String keyword) {
-		System.out.println("keyword="+keyword);
 		List<ProductVo> searchList = new ArrayList<ProductVo>();
 		ProductVo vo1 = new ProductVo(1L, "cap", 30000L, "2019-07-11", true,
 				false, true, 1L, 400L, "cap.html",
