@@ -190,8 +190,6 @@ public class AdminController {
 		return JSONResult.success(result);
 	}
 	// 회원 상태 수정
-	
-	
 	// 회원검색
 	
 	

@@ -96,13 +96,12 @@
 #### 상품리스트 요청
 
 ```
-GET - /api/admin/product/getproductlist        
-GET - /api/admin/product/productmanage
 GET - /api/admin/product/list
+GET - /api/admin/product
 ```
 
 `가져올 데이터 목록`
-	 
+
 - 상품이름
 - 상품가격
 - 상품등록일
@@ -120,9 +119,7 @@ GET - /api/admin/product/list
 #### 상품등록
 
 ```
-POST - /api/admin/product/productregister
-POST - /api/admin/product/addproduct
-POST - /api/admin/product/add
+POST - /api/admin/product
 ```
 
 `전송할 데이터 목록`
@@ -135,7 +132,7 @@ POST - /api/admin/product/add
 javascript로
 - 상품옵션여부 ---> 사용함 체크?    
 - 옵션명 옵션값
-- 옵션별 
+- 옵션별
 - 조합가능한 옵션 뿌려주기
 - 배송비
 
@@ -147,19 +144,19 @@ javascript로
 #### 상품수정
 
 ```
-POST, PUT - /api/admin/product/modify/{no}
+PUT - /api/admin/product/{no}
 ```
 
 #### 상품삭제
 
 ```
-POST, DELETE - /api/admin/product/delete/{no}
+DELETE - /api/admin/product/{no}
 ```
 
 #### 상품검색
 
 ```
-GET - /api/admin/product/search
+GET - /api/admin/product/search?keyword=''
 ```
 
 ### 주문관리
@@ -168,8 +165,8 @@ GET - /api/admin/product/search
 #### 전체주문리스트 요청
 
 ```
-GET - /api/admin/order/getorderlist
 GET - /api/admin/order/list
+GET - /api/admin/order
 ```
 
 `가져올 데이터 목록`
@@ -186,7 +183,7 @@ GET - /api/admin/order/list
 #### 입금확인 체크
 
 ```
-POST, PUT - /api/admin/order/depositcheck
+PUT - /api/admin/order/depositcheck/{no}
 ```
 
 `클릭시 주문상태가 결제대기에서 결제완료로 변경`
@@ -194,7 +191,7 @@ POST, PUT - /api/admin/order/depositcheck
 #### 배송출발 체크
 
 ```
-POST, PUT - /api/admin/order/deliverycheck
+PUT - /api/admin/order/deliverycheck/{no}
 ```
 
 `클릭시 배송지로 어떤 배송을 사용할 것이고 어떤택배사를 쓸것인지 결정`
@@ -203,7 +200,6 @@ POST, PUT - /api/admin/order/deliverycheck
 #### 전체주문중에 주문상세 요청
 
 ```
-GET - /api/admin/order/getorderdetail/{no}
 GET - /api/admin/order/detail/{no}
 ```
 
@@ -217,7 +213,7 @@ GET - /api/admin/order/detail/{no}
 #### 주문검색
 
 ```
-/api/admin/order/search
+/api/admin/order/search?keyword=''
 ```
 
 ### 회원관리
@@ -225,8 +221,8 @@ GET - /api/admin/order/detail/{no}
 #### 회원리스트 요청
 
 ```
-GET - /api/admin/user/getuserlist
 GET - /api/admin/user/list
+GET - /api/admin/user
 ```
 
 `가져올 데이터 목록`
@@ -243,21 +239,19 @@ GET - /api/admin/user/list
 #### 회원 삭제
 
 ```
-POST, DELETE - /api/admin/user/delete/{no}
-POST, DELETE - /api/admin/user/userdelete/{no}
+DELETE - /api/admin/user/{no}
 ```
 
 #### 회원 상태 수정
 
 ```
-POST, PUT - /api/admin/user/modify/{no}
-POST, PUT - /api/admin/user/usermodify/{no}
+PUT - /api/admin/user/{no}
 ```
 
 #### 회원검색
 
 ```
-GET - /api/admin/user/search
+GET - /api/admin/user/search?keyword=''
 ```
 
 <hr>
@@ -266,18 +260,101 @@ GET - /api/admin/user/search
 
 #### 회원가입
 
+```
+POST - /api/user/join
+```
+
 #### 이메일 인증
- 
-#### 회원가입 폼 전송
+
+```
+GET - /api/user/checkemail
+```
 
 #### 로그인
 
+```
+POST - /api/user/login
+```
+
 #### 회원정보수정 (마이페이지)
+
+```
+PUT - /api/user/modify
+```
 
 #### 로그아웃
 
-#### 장바구니 담기
-
-#### 장바구니 삭제
+```
+POST - /api/user/logout
+```
 
 #### 장바구니 리스트 요청
+
+```
+GET - /api/user/cart
+```
+
+#### 장바구니 담기 - ajax
+
+```
+POST - /api/user/cart
+```
+
+#### 장바구니 삭제 - ajax
+
+```
+DELETE - /api/user/cart
+```
+
+<hr>
+
+### ProductController
+
+#### 상품검색
+
+```
+GET - /api/product?keyword=''
+```
+
+#### 상품목록조회
+
+```
+GET - /api/product/list
+GET - /api/product/
+GET - /api/product?category=''
+```
+
+#### 상품상세조회
+
+```
+GET - /api/product/{no}
+```
+
+<hr>
+
+### OrderController
+
+#### 상품주문
+
+```
+POST - /api/order
+```
+
+#### 주문내역확인
+
+```
+GET - /api/order/list
+GET - /api/order
+```
+
+#### 주문상세보기
+
+```
+GET - /api/order/{no}
+```
+
+#### 주문결제
+
+```
+POST - /api/order/payment
+```
