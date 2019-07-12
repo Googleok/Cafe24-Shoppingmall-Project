@@ -119,7 +119,7 @@ public class AdminService {
 		
 		for(int i=0; i<list.size(); i++) {
 			System.out.println("list["+i+"].name=" +list.get(i).getName());
-			if(list.get(i).getName().trim() == keyword) {
+			if(list.get(i).getName().trim().equals(keyword)) {
 				System.out.println("찾았다!");
 				searchList.add(list.get(i));
 			}
@@ -197,7 +197,7 @@ public class AdminService {
 		list.add(new OrderVo(3L, "이정은", "1234", "01040287755", "leap1004@naver.com",
 				"서울시 성복구", "2019-07-11", "빨리 좀 부탁드려요", 2500L, 123000L,1L));
 		for(int i=0; i<list.size(); i++) {
-			if(list.get(i).getPhone() == keyword) {
+			if(list.get(i).getPhone().equals(keyword)) {
 				searchList.add(list.get(i));
 			}
 		}
@@ -217,6 +217,29 @@ public class AdminService {
 		list.add(vo2);
 		list.add(vo3);
 		return list;
+	}
+
+	/**
+	 * 
+	 * @param no
+	 * @return
+	 */
+	public boolean deleteUser(Long no) {
+		UserVo vo1 = new UserVo(1L, "whddjr2225", "1234", "박", "01040287755", "whddjr2225@naver.com", "1993-11-02", "male");
+		UserVo vo2 = new UserVo(2L, "whddjr2225", "1234", "종", "01040287755", "whddjr2225@naver.com", "1993-11-02", "male");
+		UserVo vo3 = new UserVo(3L, "whddjr2225", "1234", "억", "01040287755", "whddjr2225@naver.com", "1993-11-02", "male");
+		List<UserVo> list = new ArrayList<UserVo>();
+		list.add(vo1);
+		list.add(vo2);
+		list.add(vo3);
+		int listSize1 = list.size();
+		for(int i=0; i<list.size(); i++) {
+			if(list.get(i).getNo() == no) {
+				list.remove(i);
+			}
+		}
+		int listSize2 = list.size();
+		return listSize1 == listSize2+1;
 	}
 
 	

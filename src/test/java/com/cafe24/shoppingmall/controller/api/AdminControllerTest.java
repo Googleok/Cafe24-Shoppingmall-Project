@@ -208,6 +208,17 @@ public class AdminControllerTest {
 
 	}
 
+	// 회원삭제  Test
+	@Test
+	public void testDeleteUser() throws Exception {
+		Long deleteNo = 2L;
+		
+		ResultActions resultActions = 
+				mockMvc
+				.perform(delete("/api/admin/user/{deleteNo}", deleteNo))
+				.andExpect(status().isOk())
+				.andDo(print());
+	}	
 	
 }
 
