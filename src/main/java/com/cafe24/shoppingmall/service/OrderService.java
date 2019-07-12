@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.cafe24.shoppingmall.repository.OrderDao;
 import com.cafe24.shoppingmall.vo.OrderDetailVo;
 import com.cafe24.shoppingmall.vo.OrderVo;
+import com.cafe24.shoppingmall.vo.PaymentVo;
 
 @Service
 public class OrderService {
@@ -33,6 +34,28 @@ public class OrderService {
 		list.add(vo3);
 		for(int i=0; i<list.size(); i++) {
 			if(list.get(i).getNo() == no) {
+				newVo = list.get(i);
+			}
+		}
+		return newVo;
+	}
+
+	public OrderVo orderProduct(OrderVo vo) {
+		// 주문 저장 되고, 결제도 결제대기상태로 저장됨
+		return vo;
+	}
+
+	public PaymentVo payOrder(Long no) {
+		PaymentVo newVo = null;
+		List<PaymentVo> list = new ArrayList<PaymentVo>();
+		list.add(new PaymentVo(1L, "결제대기", "카카오페이", 1L));
+		list.add(new PaymentVo(2L, "결제대기", "무통장입금", 2L));
+		list.add(new PaymentVo(3L, "결제대기", "신용카드", 3L));
+		
+		for(int i=0; i<list.size(); i++) {
+			if(list.get(i).getNo() == no) {
+				list.get(i).setPaymentStatus("결제완료");
+				// 결제완료 상태로 변경하면 이젠 배송상태도 변경시킨다.
 				newVo = list.get(i);
 			}
 		}
