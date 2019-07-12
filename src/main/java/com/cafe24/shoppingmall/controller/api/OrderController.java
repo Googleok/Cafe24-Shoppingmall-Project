@@ -21,9 +21,6 @@ public class OrderController {
 
 	@Autowired
 	private OrderService orderService;
-	
-	// 주문관리
-	// order
 		
 	/**
 	 * 상품주문

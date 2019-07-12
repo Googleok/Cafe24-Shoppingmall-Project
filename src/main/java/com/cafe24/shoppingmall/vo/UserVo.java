@@ -27,6 +27,11 @@ public class UserVo {
 		this.gender = gender;
 	}
 
+	public UserVo(String id, String password) {
+		this.id = id;
+		this.password = password;
+	}
+
 	public Long getNo() {
 		return no;
 	}
