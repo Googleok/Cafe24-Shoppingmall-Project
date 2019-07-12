@@ -22,8 +22,8 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.cafe24.shoppingmall.config.test.AppConfig;
 import com.cafe24.shoppingmall.config.test.WebConfig;
-import com.cafe24.shoppingmall.vo.OrderDetailVo;
 import com.cafe24.shoppingmall.vo.ProductVo;
+import com.cafe24.shoppingmall.vo.UserVo;
 import com.google.gson.Gson;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -219,6 +219,35 @@ public class AdminControllerTest {
 				.andExpect(status().isOk())
 				.andDo(print());
 	}	
+	
+	// 회원정보수정  Test
+	@Test
+	public void testModifyUser() throws Exception {
+		UserVo voMock = new UserVo();
+		voMock.setPhone("01012345678");
+		voMock.setGender("female");
+		
+		Long modifyNo = 2L;
+		
+		ResultActions resultActions = 
+					mockMvc
+					.perform(put("/api/admin/user/{modifyNo}", modifyNo)
+					.contentType(MediaType.APPLICATION_JSON).content(new Gson().toJson(voMock)))
+					.andExpect(status().isOk())
+					.andDo(print());
+	}	
+	
+	// 회원검색리스트  요청 Test
+	@Test
+	public void testGetUserSearchList() throws Exception {
+		String keyword = "박종억";
+		ResultActions resultActions = 
+				mockMvc
+				.perform(get("/api/admin/user/search?keyword={keyword}", keyword))
+				.andExpect(status().isOk())
+				.andDo(print());
+
+	}
 	
 }
 

@@ -189,10 +189,29 @@ public class AdminController {
 		boolean result = adminService.deleteUser(no);
 		return JSONResult.success(result);
 	}
-	// 회원 상태 수정
-	// 회원검색
 	
+	/**
+	 * 회원 상태 수정
+	 * @param no
+	 * @param vo
+	 * @return
+	 */
+	@PutMapping("/user/{no}")
+	public JSONResult modifyUser(@PathVariable("no") Long no, @RequestBody UserVo vo){
+		UserVo newVo = adminService.modifyUser(no, vo);
+		return JSONResult.success(newVo);
+	}
 	
+	/**
+	 * 회원검색 --> 너무많은데 일단 ID로 체크
+	 * @param keyword
+	 * @return
+	 */
+	@GetMapping("/user/search")
+	public JSONResult getUserSearchList(@RequestParam(value = "keyword") String keyword){
+		List<UserVo> list = adminService.getUserSearchList(keyword);
+		return JSONResult.success(list);
+	}
 	
 	
 	
