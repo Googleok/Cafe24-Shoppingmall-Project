@@ -1,6 +1,14 @@
 package com.cafe24.shoppingmall.controller.api;
 
+import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,9 +30,19 @@ public class UserController {
 	
 	// 회원가입
 	@PostMapping("/join")
-	public JSONResult join(@RequestBody UserVo vo) {
+	public ResponseEntity<JSONResult> join(@RequestBody @Valid UserVo vo,
+									BindingResult result) {
+		
+		// @valid 유효성 검증
+		if(result.hasErrors()) {
+			List<ObjectError> errors = result.getAllErrors();
+			for(ObjectError error : errors) {
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(JSONResult.fail(error.getDefaultMessage()));
+			}
+		}
+		
 		UserVo newVo = userService.join(vo);
-		return JSONResult.success(newVo);
+		return ResponseEntity.status(HttpStatus.OK).body(JSONResult.success(newVo));
 	}
 	
 //	@ApiOperation(value="이메일 존재 여부")
@@ -32,10 +50,10 @@ public class UserController {
 //		@ApiImplicitParam(name="email", value="이메일 주소", required = true) 
 //	})
 	@RequestMapping(value="/checkemail", method=RequestMethod.GET)
-	public JSONResult checkEmail(
+	public ResponseEntity<JSONResult> checkEmail(
 			@RequestParam(value="email", required=true, defaultValue="") String email){
 		Boolean exist = userService.existEmail(email);
-		return JSONResult.success(exist);
+		return ResponseEntity.status(HttpStatus.OK).body(JSONResult.success(exist));
 	}
 	
 	// 로그인
