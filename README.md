@@ -2,6 +2,14 @@
 
 # 프로젝트 설계도 🗺
 
+## 시퀀스
+
+<img src="./Doc/img/관리자-상품관리.JPG">
+<img src="./Doc/img/관리자-카테고리관리.JPG">
+<img src="./Doc/img/관리자-주문관리.JPG">
+<img src="./Doc/img/관리자-고객관리.JPG">
+<img src="./Doc/img/비회원-회원가입.JPG">
+<img src="./Doc/img/고객-장바구니&주문&결제.JPG">
 
 ## src/main/java 설정 🚩
 
@@ -358,3 +366,8 @@ GET - /api/order/{no}
 ```
 POST - /api/order/payment
 ```
+
+## Swagger API 목록
+
+<img src="./Doc/img/swagger-admin.JPG">
+<img src="./Doc/img/swagger-user.JPG">
