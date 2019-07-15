@@ -3,6 +3,8 @@ package com.cafe24.shoppingmall.controller.api;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,9 +38,9 @@ public class AdminController {
 	 * @return
 	 */
 	@GetMapping({"/product", "/product/list"})
-	public JSONResult getProductList(){
+	public ResponseEntity<JSONResult> getProductList(){
 		List<ProductVo> list = adminService.getProductList();
-		return JSONResult.success(list);
+		return ResponseEntity.status(HttpStatus.OK).body(JSONResult.success(list));
 	}
 	
 	/**
@@ -47,9 +49,9 @@ public class AdminController {
 	 * @return
 	 */
 	@GetMapping("/product/{no}")
-	public JSONResult getProductOne(@PathVariable("no") Long no){
+	public ResponseEntity<JSONResult> getProductOne(@PathVariable("no") Long no){
 		ProductVo vo = adminService.getProductOne(no);
-		return JSONResult.success(vo);
+		return ResponseEntity.status(HttpStatus.OK).body(JSONResult.success(vo));
 	}
 	
 	
@@ -59,9 +61,9 @@ public class AdminController {
 	 * @return
 	 */
 	@PostMapping("/product")
-	public JSONResult addProduct(@RequestBody ProductVo vo){
+	public ResponseEntity<JSONResult> addProduct(@RequestBody ProductVo vo){
 		Boolean result = adminService.addProduct(vo);
-		return JSONResult.success(result);
+		return ResponseEntity.status(HttpStatus.OK).body(JSONResult.success(result));
 	}
 
 	/**
@@ -71,9 +73,9 @@ public class AdminController {
 	 * @return
 	 */
 	@PutMapping("/product/{no}")
-	public JSONResult modifyProduct(@PathVariable("no") Long no, @RequestBody ProductVo vo){
+	public ResponseEntity<JSONResult> modifyProduct(@PathVariable("no") Long no, @RequestBody ProductVo vo){
 		ProductVo newVo = adminService.modifyProduct(no, vo);
-		return JSONResult.success(newVo);
+		return ResponseEntity.status(HttpStatus.OK).body(JSONResult.success(newVo));
 	}
 	
 	/**
@@ -82,9 +84,9 @@ public class AdminController {
 	 * @return
 	 */
 	@DeleteMapping("/product/{no}")
-	public JSONResult deleteProduct(@PathVariable("no") Long no){
+	public ResponseEntity<JSONResult> deleteProduct(@PathVariable("no") Long no){
 		boolean result = adminService.deleteProduct(no);
-		return JSONResult.success(result);
+		return ResponseEntity.status(HttpStatus.OK).body(JSONResult.success(result));
 	}
 	
 	/**
@@ -93,9 +95,9 @@ public class AdminController {
 	 * @return
 	 */
 	@GetMapping("/product/search")
-	public JSONResult getProductSearchList(@RequestParam(value = "keyword") String keyword){
+	public ResponseEntity<JSONResult> getProductSearchList(@RequestParam(value = "keyword") String keyword){
 		List<ProductVo> list = adminService.getProductSearchList(keyword);
-		return JSONResult.success(list);
+		return ResponseEntity.status(HttpStatus.OK).body(JSONResult.success(list));
 	}
 	
 	// 주문관리
@@ -106,9 +108,9 @@ public class AdminController {
 	 * @return
 	 */
 	@GetMapping({"/order", "/order/list"})
-	public JSONResult getOrderList(){
+	public ResponseEntity<JSONResult> getOrderList(){
 		List<OrderVo> list = adminService.getOrderList();
-		return JSONResult.success(list);
+		return ResponseEntity.status(HttpStatus.OK).body(JSONResult.success(list));
 	}
 	
 	/**
@@ -117,9 +119,9 @@ public class AdminController {
 	 * @return
 	 */
 	@GetMapping("/order/{no}")
-	public JSONResult getOrderOne(@PathVariable("no") Long no){
+	public ResponseEntity<JSONResult> getOrderOne(@PathVariable("no") Long no){
 		OrderVo vo = adminService.getOrderOne(no);
-		return JSONResult.success(vo);
+		return ResponseEntity.status(HttpStatus.OK).body(JSONResult.success(vo));
 	}
 	
 	/**
@@ -128,9 +130,9 @@ public class AdminController {
 	 * @return
 	 */
 	@GetMapping("/order/detail/{no}")
-	public JSONResult getOrderDetail(@PathVariable("no") Long no){
+	public ResponseEntity<JSONResult> getOrderDetail(@PathVariable("no") Long no){
 		OrderDetailVo vo = adminService.getOrderDetail(no);
-		return JSONResult.success(vo);
+		return ResponseEntity.status(HttpStatus.OK).body(JSONResult.success(vo));
 	}
 
 	/**
@@ -139,9 +141,9 @@ public class AdminController {
 	 * @return
 	 */
 	@PutMapping("/order/depositcheck/{no}")
-	public JSONResult orderDepositCheck(@PathVariable("no") Long no){
+	public ResponseEntity<JSONResult> orderDepositCheck(@PathVariable("no") Long no){
 		OrderDetailVo newVo = adminService.orderDepositCheck(no);
-		return JSONResult.success(newVo);
+		return ResponseEntity.status(HttpStatus.OK).body(JSONResult.success(newVo));
 	}
 	
 	/**
@@ -150,9 +152,9 @@ public class AdminController {
 	 * @return
 	 */
 	@PutMapping("/order/deliverycheck/{no}")
-	public JSONResult orderDeliveryCheck(@PathVariable("no") Long no){
+	public ResponseEntity<JSONResult> orderDeliveryCheck(@PathVariable("no") Long no){
 		OrderDetailVo newVo = adminService.orderDeliveryCheck(no);
-		return JSONResult.success(newVo);
+		return ResponseEntity.status(HttpStatus.OK).body(JSONResult.success(newVo));
 	}
 	
 	/**
@@ -161,22 +163,22 @@ public class AdminController {
 	 * @return
 	 */
 	@GetMapping("/order/search")
-	public JSONResult getOrderSearchList(@RequestParam(value = "keyword") String keyword){
+	public ResponseEntity<JSONResult> getOrderSearchList(@RequestParam(value = "keyword") String keyword){
 		List<OrderVo> list = adminService.getOrderSearchList(keyword);
-		return JSONResult.success(list);
+		return ResponseEntity.status(HttpStatus.OK).body(JSONResult.success(list));
 	}
 
 	// 회원관리
 	// user
-	
+	 
 	/**
 	 * 회원리스트 요청
 	 * @return
 	 */
 	@GetMapping({"/user", "/user/list"})
-	public JSONResult getUserList(){
+	public ResponseEntity<JSONResult> getUserList(){
 		List<UserVo> list = adminService.getUserList();
-		return JSONResult.success(list);
+		return ResponseEntity.status(HttpStatus.OK).body(JSONResult.success(list));
 	}
 	
 	/**
@@ -185,9 +187,9 @@ public class AdminController {
 	 * @return
 	 */
 	@DeleteMapping("/user/{no}")
-	public JSONResult deleteUser(@PathVariable("no") Long no){
+	public ResponseEntity<JSONResult> deleteUser(@PathVariable("no") Long no){
 		boolean result = adminService.deleteUser(no);
-		return JSONResult.success(result);
+		return ResponseEntity.status(HttpStatus.OK).body(JSONResult.success(result));
 	}
 	
 	/**
@@ -197,9 +199,9 @@ public class AdminController {
 	 * @return
 	 */
 	@PutMapping("/user/{no}")
-	public JSONResult modifyUser(@PathVariable("no") Long no, @RequestBody UserVo vo){
+	public ResponseEntity<JSONResult> modifyUser(@PathVariable("no") Long no, @RequestBody UserVo vo){
 		UserVo newVo = adminService.modifyUser(no, vo);
-		return JSONResult.success(newVo);
+		return ResponseEntity.status(HttpStatus.OK).body(JSONResult.success(newVo));
 	}
 	
 	/**
@@ -208,9 +210,9 @@ public class AdminController {
 	 * @return
 	 */
 	@GetMapping("/user/search")
-	public JSONResult getUserSearchList(@RequestParam(value = "keyword") String keyword){
+	public ResponseEntity<JSONResult> getUserSearchList(@RequestParam(value = "keyword") String keyword){
 		List<UserVo> list = adminService.getUserSearchList(keyword);
-		return JSONResult.success(list);
+		return ResponseEntity.status(HttpStatus.OK).body(JSONResult.success(list));
 	}
 	
 	

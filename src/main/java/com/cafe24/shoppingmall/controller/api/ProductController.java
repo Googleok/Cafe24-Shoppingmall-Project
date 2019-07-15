@@ -3,6 +3,8 @@ package com.cafe24.shoppingmall.controller.api;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,9 +39,9 @@ public class ProductController {
 	 * @return
 	 */
 	@GetMapping({"", "/list"})
-	public JSONResult getProductList(){
+	public ResponseEntity<JSONResult> getProductList(){
 		List<ProductVo> list = productService.getProductList();
-		return JSONResult.success(list);
+		return ResponseEntity.status(HttpStatus.OK).body(JSONResult.success(list));
 	}
 	
 	/**
@@ -48,8 +50,8 @@ public class ProductController {
 	 * @return
 	 */
 	@GetMapping("/{no}")
-	public JSONResult getProductOne(@PathVariable("no") Long no){
+	public ResponseEntity<JSONResult> getProductOne(@PathVariable("no") Long no){
 		ProductVo vo = productService.getProductOne(no);
-		return JSONResult.success(vo);
+		return ResponseEntity.status(HttpStatus.OK).body(JSONResult.success(vo));
 	}
 }

@@ -1,6 +1,8 @@
 package com.cafe24.shoppingmall.controller.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,9 +31,9 @@ public class OrderController {
 	 * @return
 	 */
 	@PostMapping("")
-	public JSONResult orderProduct(@RequestBody OrderVo orderVo) {
+	public ResponseEntity<JSONResult> orderProduct(@RequestBody OrderVo orderVo) {
 		OrderVo vo = orderService.orderProduct(orderVo);
-		return JSONResult.success(vo);
+		return ResponseEntity.status(HttpStatus.OK).body(JSONResult.success(vo));
 	}
 	
 	/**
@@ -40,9 +42,9 @@ public class OrderController {
 	 * @return
 	 */
 	@GetMapping("/{id}")
-	public JSONResult getOrderOne(@PathVariable("id") String id){
+	public ResponseEntity<JSONResult> getOrderOne(@PathVariable("id") String id){
 		OrderVo vo = orderService.getOrderOne(id);
-		return JSONResult.success(vo);
+		return  ResponseEntity.status(HttpStatus.OK).body(JSONResult.success(vo));
 	}
 	
 	/**
@@ -51,9 +53,9 @@ public class OrderController {
 	 * @return
 	 */
 	@GetMapping("/detail/{no}")
-	public JSONResult getOrderDetail(@PathVariable("no") Long no){
+	public ResponseEntity<JSONResult> getOrderDetail(@PathVariable("no") Long no){
 		OrderDetailVo vo = orderService.getOrderDetail(no);
-		return JSONResult.success(vo);
+		return ResponseEntity.status(HttpStatus.OK).body(JSONResult.success(vo));
 	}
 	
 	/**
@@ -62,9 +64,9 @@ public class OrderController {
 	 * @return
 	 */
 	@PutMapping("/payment/{no}")
-	public JSONResult payOrder(@PathVariable("no") Long no) {
+	public ResponseEntity<JSONResult> payOrder(@PathVariable("no") Long no) {
 		 PaymentVo vo = orderService.payOrder(no);
-		return JSONResult.success(vo);
+		return ResponseEntity.status(HttpStatus.OK).body(JSONResult.success(vo));
 	}
 	
 	
